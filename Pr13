@@ -1,0 +1,101 @@
+activity_main.xml 
+<?xml version="1.0" encoding="utf-8"?> 
+<LinearLayout 
+xmlns:android="http://schemas.android.com/apk/res/android" 
+xmlns:app="http://schemas.android.com/apk/res-auto" 
+xmlns:tools="http://schemas.android.com/tools" 
+android:layout_width="match_parent" 
+android:layout_height="match_parent" 
+tools:context=".MainActivity" 
+android:orientation="vertical" 
+android:padding="16dp"> 
+<TextView android:id="@+id/tvTitle" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:textSize="24sp" 
+android:text="Login Form" 
+android:layout_gravity="center"/> 
+<TextView android:id="@+id/tvUserName" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:textSize="20sp" 
+android:text="User Name" /> 
+<EditText 
+android:id="@+id/etUsername" 
+android:layout_width="match_parent" 
+android:layout_height="wrap_content" 
+android:hint="Username" 
+android:inputType="text" 
+android:padding="8dp" 
+android:layout_marginTop="16dp" 
+android:layout_marginBottom="30dp"/> 
+<TextView android:id="@+id/tvPassword" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:textSize="20sp" 
+android:text="Password" /> 
+<EditText 
+android:id="@+id/etPassword" 
+android:layout_width="match_parent" 
+android:layout_height="wrap_content" 
+android:hint="Password" 
+android:inputType="textPassword" 
+android:padding="8dp" 
+android:layout_marginTop="16dp" 
+android:layout_marginBottom="30dp"/> 
+<Button 
+android:id="@+id/btnLogin" 
+android:layout_width="match_parent" 
+android:layout_height="wrap_content" 
+android:text="Login"
+android:textSize="18sp" 
+android:layout_marginTop="16dp"/> 
+<TextView android:id="@+id/tvMessage" 
+android:layout_width="wrap_content" 
+android:layout_height="wrap_content" 
+android:textSize="20sp" 
+android:text="Password" /> 
+</LinearLayout> 
+
+Mainactivity.java 
+package com.bca.loginprgrm; 
+import androidx.appcompat.app.AppCompatActivity; 
+import android.os.Bundle; 
+import android.view.View; 
+import android.widget.Button; 
+import android.widget.EditText; 
+import android.widget.TextView; 
+public class MainActivity extends AppCompatActivity { 
+EditText etUsername,etPassword; Button btnLogin; 
+TextView tvMessage; 
+@Override 
+protected void onCreate(Bundle savedInstanceState) 
+{ 
+super.onCreate(savedInstanceState); 
+setContentView(R.layout.activity_main); 
+btnLogin = (Button) findViewById(R.id.btnLogin); 
+etUsername = (EditText) findViewById(R.id.etUsername); 
+etPassword = (EditText) findViewById(R.id.etPassword); 
+tvMessage = (TextView) findViewById(R.id.tvMessage); 
+btnLogin.setOnClickListener(new View.OnClickListener() 
+{ @Override 
+public void onClick(View view) 
+{ 
+if(etUsername.getText().toString().isEmpty()) 
+{ SetUsername.setError("Enter User name");
+} else if (etPassword.getText().toString().isEmpty()) { 
+etPassword.setError("Enter Password"); 
+} 
+else if(etUsername.getText().toString().equals("isbr") && 
+etPassword.getText().toString().equals("isbr")) 
+{ 
+tvMessage.setText("Valid Login"); 
+} 
+else 
+{ 
+tvMessage.setText("Invalid login"); 
+} 
+} 
+}); 
+} 
+} 
